@@ -18,19 +18,30 @@ interface types {
 
 
 export default function Clientside() {
-    const [data, setData] = useState<types[]>([])
+    const [data, setData] = useState<types[]>([]);
+    const [load, setLoad] = useState(true);
 
     useEffect(() => {
         const mencloth = async () => {
-            let client = await fetch("https://fakestoreapi.com/products");
-            let client2: types[] = await client.json();
 
-            setData(client2)
+            try{
+                let client = await fetch("https://fakestoreapi.com/products");
+                let client2: types[] = await client.json();
+
+                setData(client2)
+            }catch (error) {
+                console.error("Fetch data error", error);
+              } finally {
+                setLoad(false);
+              }
 
         }
         mencloth()
 
-    }, [])
+    }, []);
+    if (load) {
+        return <p className="flex justify-center items-center w-full h-screen ">Loading...</p>;
+      }
 
 
     return (
