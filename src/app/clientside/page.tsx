@@ -1,6 +1,7 @@
 "use client"
 import { FaStar } from "react-icons/fa"
 import Image from "next/image";
+import { Skeleton } from "@/components/ui/skeleton"
 import { useEffect, useState } from "react";
 
 interface types {
@@ -24,24 +25,95 @@ export default function Clientside() {
     useEffect(() => {
         const mencloth = async () => {
 
-            try{
+            try {
                 let client = await fetch("https://fakestoreapi.com/products");
                 let client2: types[] = await client.json();
 
                 setData(client2)
-            }catch (error) {
+            } catch (error) {
                 console.error("Fetch data error", error);
-              } finally {
+            } finally {
                 setLoad(false);
-              }
+            }
 
         }
         mencloth()
 
     }, []);
     if (load) {
-        return <p className="flex justify-center items-center w-full h-screen ">Loading...</p>;
-      }
+
+        return (
+            <div className="flex flex-wrap space-y-3 justify-evenly items-center h-auto mt-[300px] sm:mt-[420px] ">
+                <div className="w-[85%] flex flex-wrap space-y-3 justify-evenly items-center gap-6 ">
+                    <div>
+                        <Skeleton className="w-[300px]  h-[300px]  rounded-xl" />
+                        <div className="space-y-2 pt-6">
+                            <Skeleton className="h-4 w-[250px]" />
+                            <Skeleton className="h-4 w-[200px]" />
+                        </div>
+                    </div>
+                    <div>
+                        <Skeleton className="w-[300px]   h-[300px] rounded-xl" />
+                        <div className="space-y-2 pt-6">
+                            <Skeleton className="h-4 w-[250px]" />
+                            <Skeleton className="h-4 w-[200px]" />
+                        </div>
+                    </div>
+                    <div>
+                        <Skeleton className="w-[300px]   h-[300px] rounded-xl" />
+                        <div className="space-y-2 pt-6">
+                            <Skeleton className="h-4 w-[250px]" />
+                            <Skeleton className="h-4 w-[200px]" />
+                        </div>
+                    </div>
+                    <div>
+                        <Skeleton className="w-[300px]   h-[300px] rounded-xl" />
+                        <div className="space-y-2 pt-6">
+                            <Skeleton className="h-4 w-[250px]" />
+                            <Skeleton className="h-4 w-[200px]" />
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div className="w-[85%] flex flex-wrap space-y-3 justify-evenly items-center pt-[120px] gap-6 ">
+                    <div>
+                        <Skeleton className="w-[300px]  h-[300px]  rounded-xl" />
+                        <div className="space-y-2 pt-6">
+                            <Skeleton className="h-4 w-[250px]" />
+                            <Skeleton className="h-4 w-[200px]" />
+                        </div>
+                    </div>
+                    <div>
+                        <Skeleton className="w-[300px]   h-[300px] rounded-xl" />
+                        <div className="space-y-2 pt-6">
+                            <Skeleton className="h-4 w-[250px]" />
+                            <Skeleton className="h-4 w-[200px]" />
+                        </div>
+                    </div>
+                    <div>
+                        <Skeleton className="w-[300px]   h-[300px] rounded-xl" />
+                        <div className="space-y-2 pt-6">
+                            <Skeleton className="h-4 w-[250px]" />
+                            <Skeleton className="h-4 w-[200px]" />
+                        </div>
+                    </div>
+                    <div>
+                        <Skeleton className="w-[300px]   h-[300px] rounded-xl" />
+                        <div className="space-y-2 pt-6">
+                            <Skeleton className="h-4 w-[250px]" />
+                            <Skeleton className="h-4 w-[200px]" />
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        )
+
+
+    }
 
 
     return (
@@ -80,15 +152,15 @@ export default function Clientside() {
                                     <div className="text-center pt-6  text-[14px] ">
                                         <h1>{items.description.slice(0, 100)}...</h1>
                                     </div>
-                                   
+
                                     <div className="text-left pt-6 pl-5 text-[18px] font-[500]   flex justify-between pr-4">
                                         <h1>${items.price}</h1>
-                                        <p className=" flex items-center gap-1 text-yellow-500"><FaStar/>{items.rating.rate}</p>
+                                        <p className=" flex items-center gap-1 text-yellow-500"><FaStar />{items.rating.rate}</p>
                                     </div>
                                     <div className="text-right text-yellow-500 pr-3">
                                         <h1><p>({items.rating.count} reviews)</p></h1>
                                     </div>
-                                   
+
                                     <div className=" ml-4 ">
 
                                         <button className="w-[100px] h-[40px] text-[16px] mt-4 border bg-black border-black rounded-[5px] hover:bg-transparent hover:text-black transition-all duration-[0.5s] text-white">Buy now</button>
